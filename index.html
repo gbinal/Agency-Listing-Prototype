@@ -38,8 +38,42 @@
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
         </div>
 
-        <p>Page Content</p>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+              <!--Javascript that pulls JSON and renders it to the page-->
+      <script type="text/javascript">
+          function listAgencies()
+              {
+              $.getJSON('agencies.json', function(data) {          
+                   $.each(data['agencies'], function(key, val) {
+                          var template = $('#agencyListingTemplate').html();
+                          var html = Mustache.to_html(template, val);
+                          $('#agencyListing').append(html);;
+                      });  
+                  });        
+              }        
+      </script>
+      
+      <!--A template that provides layout for each entry in the JSON file-->
+      <script id="agencyListingTemplate" type="text/template">
+          <li>
+            <a href="{{url}}">{{name}}</a>
+          </li>         
+      </script>
+      
+      <!--Always provide link to raw JSON file on Github-->
+      <ul id="agencyListing">
+      
+      </ul>
+      
+      <!--This actually runs the whole process-->
+      <script type="text/javascript">
+          listAgencies();
+      </script>
       </section>
+    </div>      </section>
 
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
