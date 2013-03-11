@@ -49,7 +49,7 @@
           function listAgencies()
               {
               $.getJSON('agencies.json', function(data) {          
-                   $.each(data['agencies'], function(key, val) {
+                   $.each(data['Web_Url'], function(key, val) {
                           var template = $('#agencyListingTemplate').html();
                           var html = Mustache.to_html(template, val);
                           $('#agencyListing').append(html);;
@@ -61,7 +61,7 @@
       <!--A template that provides layout for each entry in the JSON file-->
       <script id="agencyListingTemplate" type="text/template">
           <li>
-            <a href="{{url}}">{{name}}</a>
+            <a href="{{url}}">{{Description}}</a>
           </li>         
       </script>
       
